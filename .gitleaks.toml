@@ -1,0 +1,18 @@
+# gitleaks runs in CI on every push and PR. This config keeps the default
+# rule set and adds an allowlist for the placeholder values that legitimately
+# live in .env.example and docs, so the scan flags real leaks only.
+title = "rag-report-platform gitleaks config"
+
+[extend]
+useDefault = true
+
+[allowlist]
+description = "Placeholders and example values that are not real secrets"
+regexes = [
+  '''your-api-key-here''',
+  '''example/model-name''',
+  '''api\.example-provider\.com''',
+]
+paths = [
+  '''\.env\.example''',
+]
