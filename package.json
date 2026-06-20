@@ -1,0 +1,39 @@
+{
+  "name": "rag-report-platform",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Reference implementation for retrieval-grounded, multi-source AI report generation.",
+  "license": "MIT",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "check:rls": "node scripts/check-rls-coverage.mjs",
+    "check:migrations": "node scripts/check-migration-order.mjs",
+    "rag:embed": "tsx scripts/rag/embed.ts",
+    "eval": "tsx evals/run.ts",
+    "eval:dry": "tsx evals/run.ts --dry-run"
+  },
+  "dependencies": {
+    "next": "15.5.4",
+    "pg": "^8.13.1",
+    "react": "19.1.0",
+    "react-dom": "19.1.0",
+    "zod": "^4.1.5"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "@types/pg": "^8.11.10",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "eslint": "^9.17.0",
+    "eslint-config-next": "15.5.4",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.0",
+    "vitest": "^3.2.4"
+  }
+}
