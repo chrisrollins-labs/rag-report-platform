@@ -1,0 +1,32 @@
+[
+  {
+    "id": "coastal-gulf-oct",
+    "request": { "subject": "coastal site conditions", "region": "central gulf coast", "period": "october" },
+    "targetDate": "2026-10-15"
+  },
+  {
+    "id": "inland-lake-summer",
+    "request": { "subject": "inland lake conditions", "region": "central highlands", "period": "july" },
+    "targetDate": "2026-07-20"
+  },
+  {
+    "id": "river-spring",
+    "request": { "subject": "river flow conditions", "region": "northern foothills", "period": "april" },
+    "targetDate": "2026-04-10"
+  },
+  {
+    "id": "coastal-winter",
+    "request": { "subject": "coastal site conditions", "region": "north atlantic shelf", "period": "january" },
+    "targetDate": "2026-01-18"
+  },
+  {
+    "id": "desert-basin-fall",
+    "request": { "subject": "open basin conditions", "region": "high desert", "period": "november" },
+    "targetDate": "2026-11-05"
+  },
+  {
+    "id": "delta-spring",
+    "request": { "subject": "tidal delta conditions", "region": "western delta", "period": "march" },
+    "targetDate": "2026-03-22"
+  }
+]

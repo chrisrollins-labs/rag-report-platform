@@ -1,0 +1,16 @@
+[
+  {
+    "file": "coastal-central-gulf.md",
+    "title": "Central Gulf Coast — coastal site profile",
+    "subject": "coastal-site-conditions",
+    "source": "sample_profile",
+    "tags": ["central-gulf-coast", "autumn", "october"]
+  },
+  {
+    "file": "inland-lake-highlands.md",
+    "title": "Central Highlands — inland lake profile",
+    "subject": "inland-lake-conditions",
+    "source": "sample_profile",
+    "tags": ["central-highlands", "summer", "july"]
+  }
+]
