@@ -1,0 +1,12 @@
+flowchart TB
+    Route[reports route handler] --> Pipeline[pipeline orchestrator]
+    Pipeline --> Base[L1 base cache]
+    Pipeline --> Overlay[L2 live overlay]
+    Pipeline --> Temporal[temporal signal - deterministic]
+    Pipeline --> Weather[weather signal - network]
+    Base --> Knowledge[knowledge source - RAG]
+    Base --> Client[ai client]
+    Overlay --> Client
+    Client --> Transport[transport - openai-compatible or mock]
+    Client --> Usage[(ai_usage_log)]
+    Knowledge --> Corpus[(pgvector corpus)]

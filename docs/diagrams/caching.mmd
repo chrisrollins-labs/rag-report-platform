@@ -1,0 +1,10 @@
+flowchart TD
+    A[request] --> B{L1 base exists?}
+    B -- ready --> H[serve - cache hit]
+    B -- failed or stale --> R[reclaim + regenerate]
+    B -- missing --> I{guarded insert wins?}
+    I -- yes --> G[generate + mark ready]
+    I -- no --> P[poll until ready or failed]
+    P --> H
+    G --> H
+    R --> H

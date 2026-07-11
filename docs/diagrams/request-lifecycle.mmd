@@ -1,0 +1,24 @@
+sequenceDiagram
+    participant C as Client
+    participant R as Route
+    participant P as Pipeline
+    participant B as Base cache
+    participant K as Knowledge (RAG)
+    participant A as AI client
+    participant S as Signals
+    participant O as Overlay
+    C->>R: POST /api/reports
+    R->>R: Zod-validate input
+    R->>P: runReportPipeline
+    P->>B: ensureReportBase(key)
+    alt cache hit
+        B-->>P: ready base
+    else miss
+        B->>K: retrieve knowledge (graceful-empty)
+        B->>A: generateStructured (render, call, parse, retry once, log cost)
+        A-->>B: validated advisory
+    end
+    P->>S: gather signals (concurrent, optional)
+    P->>O: overlay if date is near (deterministic fallback)
+    P-->>R: report + provenance
+    R-->>C: 200 JSON
