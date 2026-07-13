@@ -88,6 +88,16 @@ curl -X POST localhost:3000/api/reports \
 - [docs/deployment/ci-cd.md](docs/deployment/ci-cd.md) — the gate stack.
 - [docs/decisions/](docs/decisions/) — twelve ADRs, one per non-obvious choice.
 
+## Author
+
+Built by **Chris Rollins** — full-stack / AI engineer.
+
+- Portfolio & case study: **[rollinsdigital.com/projects/rag-report-platform](https://rollinsdigital.com/projects/rag-report-platform)**
+- GitHub: [github.com/chrisrollins-labs](https://github.com/chrisrollins-labs)
+- LinkedIn: [in/christopher-t-rollins](https://www.linkedin.com/in/christopher-t-rollins)
+
+This is a sanitized reference implementation from my portfolio — the engineering patterns of a production system, with the proprietary parts left out.
+
 ## License
 
 MIT. See [LICENSE](LICENSE).

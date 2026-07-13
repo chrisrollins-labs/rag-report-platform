@@ -3,7 +3,16 @@
   "version": "0.1.0",
   "private": true,
   "description": "Reference implementation for retrieval-grounded, multi-source AI report generation.",
+  "author": "Chris Rollins <chrisrollins360@gmail.com> (https://rollinsdigital.com)",
   "license": "MIT",
+  "homepage": "https://rollinsdigital.com/projects/rag-report-platform",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chrisrollins-labs/rag-report-platform.git"
+  },
+  "bugs": {
+    "url": "https://github.com/chrisrollins-labs/rag-report-platform/issues"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
