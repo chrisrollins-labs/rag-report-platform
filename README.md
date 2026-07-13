@@ -20,7 +20,7 @@ Wiring a prompt to an API key is a demo. Production AI has to answer harder ques
 
 ## Three ideas do most of the work
 
-**1. Every model call goes through one function.** `src/ai/client.ts` renders a versioned template, calls the provider through an **injectable transport**, validates output against a Zod schema with one corrective retry, and logs token counts and estimated cost on every call — success or failure. Because the transport is injected, the entire test suite runs offline and never touches the network.
+**1. Every model call goes through one function.** `src/ai/client.ts` renders a versioned template, calls the provider through an **injectable transport**, validates output against a Zod schema with one corrective retry, and logs token counts and estimated cost on every call - success or failure. Because the transport is injected, the entire test suite runs offline and never touches the network.
 
 **2. Reports are cached by what actually determines them.** A durable base (expensive, rarely changes) is generated once under a **double-generation lock** and reused. Live signals layer on top. The warm path never calls the model.
 
@@ -91,33 +91,33 @@ key); without it, retrieval degrades to empty, exactly as in production.
 
 ## What's inside
 
-- **AI core** — one provider-abstracted client, structured output with a corrective retry, per-call cost logging, prompt configuration as versioned data.
-- **Report engine** — L1 durable base cache with a double-generation lock, L2 live overlay with a deterministic fallback, an orchestrator with honest failure handling and full provenance.
-- **RAG** — a pgvector corpus with an HNSW index and a `match_chunks` function, graceful-empty retrieval, and a coverage-gap demand signal; chunking plus an offline-capable seeding CLI.
-- **Signals** — a `SignalProvider` seam with a deterministic temporal provider and a network-backed weather provider, each optional.
-- **Data + security** — migrations as the single source of schema truth, RLS enabled in the same migration as each table and enforced by a CI gate, a secrets policy with gitleaks and an `.env.example` guard test.
-- **Billing** — idempotent webhook processing via an event-id ledger, entitlement mapping that fails closed.
-- **Evaluation** — an LLM-as-judge harness scoring a committed golden set on a fixed rubric.
-- **Tooling** — CI running typecheck, lint, test, RLS coverage, migration order, build, secret scan, and CodeQL. 54 offline tests.
+- **AI core** - one provider-abstracted client, structured output with a corrective retry, per-call cost logging, prompt configuration as versioned data.
+- **Report engine** - L1 durable base cache with a double-generation lock, L2 live overlay with a deterministic fallback, an orchestrator with honest failure handling and full provenance.
+- **RAG** - a pgvector corpus with an HNSW index and a `match_chunks` function, graceful-empty retrieval, and a coverage-gap demand signal; chunking plus an offline-capable seeding CLI.
+- **Signals** - a `SignalProvider` seam with a deterministic temporal provider and a network-backed weather provider, each optional.
+- **Data + security** - migrations as the single source of schema truth, RLS enabled in the same migration as each table and enforced by a CI gate, a secrets policy with gitleaks and an `.env.example` guard test.
+- **Billing** - idempotent webhook processing via an event-id ledger, entitlement mapping that fails closed.
+- **Evaluation** - an LLM-as-judge harness scoring a committed golden set on a fixed rubric.
+- **Tooling** - CI running typecheck, lint, test, RLS coverage, migration order, build, secret scan, and CodeQL. 54 offline tests.
 
 ## Documentation
 
-- [ARCHITECTURE.md](ARCHITECTURE.md) — the anchor: components, request lifecycle, degradation strategy.
-- [docs/architecture/](docs/architecture/) — overview, caching model, RAG pipeline, signal providers, data model.
-- [docs/ai/](docs/ai/) — prompt versioning, structured output, evaluation.
-- [docs/api/reports-api.md](docs/api/reports-api.md) — request/response contract and error taxonomy.
-- [docs/deployment/ci-cd.md](docs/deployment/ci-cd.md) — the gate stack.
-- [docs/decisions/](docs/decisions/) — twelve ADRs, one per non-obvious choice.
+- [ARCHITECTURE.md](ARCHITECTURE.md) - the anchor: components, request lifecycle, degradation strategy.
+- [docs/architecture/](docs/architecture/) - overview, caching model, RAG pipeline, signal providers, data model.
+- [docs/ai/](docs/ai/) - prompt versioning, structured output, evaluation.
+- [docs/api/reports-api.md](docs/api/reports-api.md) - request/response contract and error taxonomy.
+- [docs/deployment/ci-cd.md](docs/deployment/ci-cd.md) - the gate stack.
+- [docs/decisions/](docs/decisions/) - twelve ADRs, one per non-obvious choice.
 
 ## Author
 
-Built by **Chris Rollins** — full-stack / AI engineer.
+Built by **Chris Rollins** - full-stack / AI engineer.
 
 - Portfolio & case study: **[rollinsdigital.com/projects/rag-report-platform](https://rollinsdigital.com/projects/rag-report-platform)**
 - GitHub: [github.com/chrisrollins-labs](https://github.com/chrisrollins-labs)
 - LinkedIn: [in/christopher-t-rollins](https://www.linkedin.com/in/christopher-t-rollins)
 
-This is a sanitized reference implementation from my portfolio — the engineering patterns of a production system, with the proprietary parts left out.
+This is a sanitized reference implementation from my portfolio - the engineering patterns of a production system, with the proprietary parts left out.
 
 ## License
 
