@@ -68,6 +68,27 @@ curl -X POST localhost:3000/api/reports \
   -d '{"subject":"coastal site conditions","region":"central gulf coast","period":"october","targetDate":"2026-10-15"}'
 ```
 
+### The Postgres path (optional)
+
+Everything above runs in-memory with zero infrastructure. To exercise the
+Postgres-backed report store, the pgvector corpus, and row-level security, start
+a local database, apply the schema, and point the app at it:
+
+```bash
+docker compose up -d          # local Postgres + pgvector, matches .env.example
+cp .env.example .env.local    # then set REPORT_STORE=postgres
+npm run db:migrate            # applies db/migrations in order
+npm run dev
+```
+
+`docker-compose.yml` provisions `postgres://rag:rag@localhost:5432/rag`. The app
+connects as the database owner, which can read and write the service-role
+tables; the RLS policies (deny-by-default on internal tables, `app.user_id` on
+the user-owned billing tables) still apply to non-owner roles, which is the
+production posture. To populate the pgvector corpus so retrieval returns
+matches, run the seeding CLI (`npm run rag:embed`, which needs an embeddings
+key); without it, retrieval degrades to empty, exactly as in production.
+
 ## What's inside
 
 - **AI core** — one provider-abstracted client, structured output with a corrective retry, per-call cost logging, prompt configuration as versioned data.

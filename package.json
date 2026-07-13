@@ -23,6 +23,7 @@
     "test:watch": "vitest",
     "check:rls": "node scripts/check-rls-coverage.mjs",
     "check:migrations": "node scripts/check-migration-order.mjs",
+    "db:migrate": "tsx scripts/migrate.ts",
     "rag:embed": "tsx scripts/rag/embed.ts",
     "eval": "tsx evals/run.ts",
     "eval:dry": "tsx evals/run.ts --dry-run"

@@ -1,0 +1,34 @@
+# Optional local Postgres (with pgvector) for the "real database" path.
+#
+# The app and the full test suite run in-memory with zero infrastructure by
+# default. Use this only to exercise the Postgres-backed store, the pgvector
+# corpus, per-table row-level security, and the usage/events tables:
+#
+#   docker compose up -d
+#   cp .env.example .env.local        # then set REPORT_STORE=postgres
+#   npm run db:migrate
+#   npm run rag:embed -- <files>      # optional: seed the pgvector corpus (needs an embeddings key)
+#   npm run dev
+#
+# Credentials, port, and database name match DATABASE_URL in .env.example
+# (postgres://rag:rag@localhost:5432/rag). The image is pgvector/pgvector so the
+# `create extension vector` in migration 0001 succeeds.
+services:
+  postgres:
+    image: pgvector/pgvector:pg16
+    environment:
+      POSTGRES_USER: rag
+      POSTGRES_PASSWORD: rag
+      POSTGRES_DB: rag
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U rag -d rag"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+    volumes:
+      - rag_pgdata:/var/lib/postgresql/data
+
+volumes:
+  rag_pgdata:
